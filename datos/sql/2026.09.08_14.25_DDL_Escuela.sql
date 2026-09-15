@@ -1,7 +1,7 @@
-create table Escuela (
-    id INT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    direccion VARCHAR(255),
-    telefono VARCHAR(15),
-    email VARCHAR(100)
+create table Periodo_Academico (
+    id_periodo_academico int not null auto_increment,
+    nombre_periodo_academico varchar(50) not null,
+    fecha_inicio date not null,
+    fecha_fin date not null,
+    primary key (id_periodo_academico)
 );
