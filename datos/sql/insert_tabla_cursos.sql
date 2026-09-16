@@ -37,7 +37,7 @@ VALUES
 
 --Ingresar datos a Profesor
 Insert into Profesor
-(nombre_profesor, correo_profesor, telefono_profesor id_asignatura)
+(nombre_profesor, correo_profesor, telefono_profesor, id_asignatura)
 values
 ('Rory Walter Alveal Lira', 'rory.alveal@correo.cl', '912345600', 1),
 ('Andrea Martinez', 'andrea.martinez@correo.cl', '912345601', 2),
