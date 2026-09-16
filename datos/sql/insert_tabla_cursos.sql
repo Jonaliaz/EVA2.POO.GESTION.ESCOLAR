@@ -9,7 +9,7 @@ values
 
 
 --Ingresar datos a Apoderados
-Insert into Apoderados
+Insert into Apoderado
 (nombre_apoderado, correo_apoderado, telefono_apoderado)
 values
 ('Juan Perez', 'juan.perez@correo.cl', '911111111'),
@@ -63,7 +63,7 @@ values
 
 
 --Ingresar datos a Notas
-Insert into Notas
+Insert into Nota
 (calificacion, fecha, id_alumno, id_asignatura)
 values
 (65, '2026-09-16', 1, 1),
