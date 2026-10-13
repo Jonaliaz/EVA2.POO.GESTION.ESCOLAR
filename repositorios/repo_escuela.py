@@ -1,5 +1,6 @@
-from datos.modelos.model import escuela
+from modelos.escuela import Escuela  # Importas la clase modelo creada en modelos/escuela.py
 
 def listado_cursos():
-    cursos = curso
-    return escuela.objects.all()
+    # Obtiene todos los registros usando Peewee ORM
+    cursos = Escuela.select()
+    return cursos

@@ -1,8 +1,12 @@
 from presentación.menu import menu_principal
+from repositorios.repo_escuela import listado_cursos
 
-#menu_principal()
+# Ejecutamos la función para obtener la lista de cursos
+cursos = listado_cursos()
 
-from.datos.repositorios.repo_escuela import listado_cursos 
+# Recorremos e imprimimos los cursos
+for curso in cursos:
+    print(curso)
 
-cursos= listado_cursos():
-curs
+# Si deseas llamar al menú principal, descomenta la siguiente línea:
+# menu_principal()
