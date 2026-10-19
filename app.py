@@ -1,5 +1,5 @@
 from presentación.menu import menu_principal
-from repositorios.repo_escuela import listado_cursos
+from datos.repositorios.repo_escuela import listado_cursos
 
 # Ejecutamos la función para obtener la lista de cursos
 cursos = listado_cursos()
