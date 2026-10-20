@@ -14,7 +14,7 @@ database = conexion_db()
 class BaseModel(Model):
     """Clase base que centraliza la conexion a la base de datos para todas las entidades."""
     class Meta:
-        database = 'database'
+        database = database
         
         
 class Apoderado(BaseModel):
