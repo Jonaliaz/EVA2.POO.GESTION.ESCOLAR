@@ -115,7 +115,7 @@ VALUES
 
 
 --Insertar datos dentro de la tabla Clases Programadas
-INSERT INTO Clases_Programadas
+INSERT INTO Clases_programadas
 (horario, fecha, sala, id_asignatura, id_seccion)
 VALUES
 ('08:30 - 10:00', '2026-09-21', 'Sala 101', 1, 1),
