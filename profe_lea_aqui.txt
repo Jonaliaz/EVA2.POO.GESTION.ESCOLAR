@@ -1,0 +1,13 @@
+instrucciones para la ejecucion:
+Primero: es instalar las dependencias ejecutando: pip install -r requirements.txt,
+Segundo: crear un archivo llamado .env en la raíz del proyecto.
+Tercero: Dentro del archivo .env, colocar las credenciales de la base de datos con esta estructura:
+
+db=poo_eva2
+host=localhost
+port=3306
+user=SU_USUARIO_AQUI
+password=SU_CONTRASEÑA_AQUI
+
+Cuarto: Importar el archivo poo_eva2.sql en phpMyAdmin.
+Cinco: Ejecutar el sistema con: python app.py.
