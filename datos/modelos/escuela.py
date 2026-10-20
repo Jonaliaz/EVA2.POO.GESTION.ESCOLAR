@@ -97,7 +97,7 @@ class Alumno(BaseModel):
     id_apoderado = ForeignKeyField(Apoderado, column_name='id_apoderado', backref='alumnos')
     
     class Meta:
-        table_name = 'alumno'
+        table_name = 'Alumno'
         
         
 class Registro_academico(BaseModel):
