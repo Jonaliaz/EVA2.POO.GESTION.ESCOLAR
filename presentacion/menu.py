@@ -124,7 +124,8 @@ def borrar_alumno():
         id_alumno = _pedir_entero('Ingrese el ID del alumno a eliminar: ')
         encontrado = obtener_alumno(id_alumno)
         if encontrado:
-            eliminar_alumno(encontrado)
+            eliminar_alumno(encontrado) # <--- Llamamos al repositorio
+            print('\n¡Alumno eliminado correctamente!')
         else:
             print('Alumno no encontrado.')
     except Exception as error:

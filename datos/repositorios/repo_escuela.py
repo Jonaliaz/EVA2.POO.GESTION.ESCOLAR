@@ -45,7 +45,7 @@ def actualizar_apoderado(apoderado: Apoderado) -> bool:
 
 def eliminar_apoderado(apoderado: Apoderado) -> bool:
     try:
-        apoderado.delete_instance()
+        apoderado.delete_instance(recursive=True)
         print("Apoderado eliminado con éxito.")
         return True
     except Exception as e:
@@ -85,7 +85,7 @@ def actualizar_curso(curso: Curso) -> bool:
 
 def eliminar_curso(curso: Curso) -> bool:
     try:
-        curso.delete_instance()
+        curso.delete_instance(recursive=True)
         print("Curso eliminado con éxito.")
         return True
     except Exception as e:
@@ -126,7 +126,7 @@ def actualizar_profesor(profesor: Profesor) -> bool:
 
 def eliminar_profesor(profesor: Profesor) -> bool:
     try:
-        profesor.delete_instance()
+        profesor.delete_instance(recursive=True)
         print("Profesor eliminado con éxito.")
         return True
     except Exception as e:
@@ -177,7 +177,7 @@ def actualizar_alumno(alumno: Alumno) -> bool:
 
 def eliminar_alumno(alumno: Alumno) -> bool:
     try:
-        alumno.delete_instance()
+        alumno.delete_instance(recursive=True)
         print("Alumno eliminado con éxito.")
         return True
     except Exception as e:

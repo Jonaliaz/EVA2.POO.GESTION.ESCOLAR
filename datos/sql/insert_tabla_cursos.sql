@@ -1,5 +1,5 @@
 --Insertar datos dentro de la tabla Apoderados
-INSERT INTO Apoderado
+INSERT INTO apoderado
 (nombre, correo, telefono)
 VALUES
 ('Carlos Gonzalez', 'carlos.gonzalez@correo.cl', '912345601'),
@@ -17,7 +17,7 @@ VALUES
 
 
 --Insertar datos dentro de la Curso
-INSERT INTO Curso
+INSERT INTO curso
 (nombre, nivel)
 VALUES
 ('Analista Programador', 'Primer Año'),
@@ -28,7 +28,7 @@ VALUES
 
 
 --Insertar datos dentro de la tabla Profesor
-INSERT INTO Profesor
+INSERT INTO profesor
 (nombre, correo, telefono)
 VALUES
 ('Rory Alveal', 'rory.alveal@correo.cl', '923456701'),
@@ -39,7 +39,7 @@ VALUES
 
 
 --Insertar datos dentro de la tabla Asignatura
-INSERT INTO Asignatura
+INSERT INTO asignatura
 (nombre, descripcion, id_profesor)
 VALUES
 ('Base de Datos', 'Fundamentos y gestion de bases de datos', 1),
@@ -50,7 +50,7 @@ VALUES
 
 
 --Insertar datos dentro de la tabla Contenido
-INSERT INTO Contenido
+INSERT INTO contenido
 (nombre, numero_unidad)
 VALUES
 ('Modelo Relacional', 1),
@@ -62,7 +62,7 @@ VALUES
 
 
 --Insertar datos dentro de la tabla Evaluaciones
-INSERT INTO Evaluaciones
+INSERT INTO evaluaciones
 (nombre, fecha, descripcion, id_contenido)
 VALUES
 ('Prueba Relacional', '2026-09-10', 'Evaluacion del modelo relacional', 1),
@@ -74,7 +74,7 @@ VALUES
 
 
 --Insertar datos dentro de la tabla Seccion
-INSERT INTO Seccion
+INSERT INTO seccion
 (numero, cupos, id_curso, id_asignatura)
 VALUES
 ('001', 30, 1, 1),
@@ -85,7 +85,7 @@ VALUES
 
 
 --Insertar datos dentro de la tabla Alumno
-INSERT INTO Alumno
+INSERT INTO alumno
 (nombre, correo, telefono, id_seccion, id_curso, id_apoderado)
 VALUES
 ('Leonardo Barriga', 'leonardo@correo.cl', '934567801', 1, 1, 1),
@@ -103,7 +103,7 @@ VALUES
 
 
 --Insertar datos dentro de la tabla Registro Academico
-INSERT INTO Registro_academico
+INSERT INTO registro_academico
 (fecha, id_curso, id_contenido)
 VALUES
 ('2026-09-01', 1, 1),
@@ -115,7 +115,7 @@ VALUES
 
 
 --Insertar datos dentro de la tabla Clases Programadas
-INSERT INTO Clases_programadas
+INSERT INTO clases_programadas
 (horario, fecha, sala, id_asignatura, id_seccion)
 VALUES
 ('08:30 - 10:00', '2026-09-21', 'Sala 101', 1, 1),
@@ -126,7 +126,7 @@ VALUES
 
 
 --Insertar datos dentro de la tabla Nota
-INSERT INTO Nota
+INSERT INTO nota
 (calificacion, fecha, id_alumno, id_evaluaciones)
 VALUES
 (6.5, '2026-09-10', 1, 1),
@@ -144,7 +144,7 @@ VALUES
 
 
 --Insertar datos dentro de la tabla Asistencia
-INSERT INTO Asistencia
+INSERT INTO asistencia
 (fecha, estado, id_alumno, id_clases_prog)
 VALUES
 ('2026-09-21', 'Presente', 1, 1),
