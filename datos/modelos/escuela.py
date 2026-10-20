@@ -14,7 +14,7 @@ database = conexion_db()
 class BaseModel(Model):
     """Clase base que centraliza la conexion a la base de datos para todas las entidades."""
     class Meta:
-        database = database
+        database = 'database'
         
         
 class Apoderado(BaseModel):
@@ -24,7 +24,7 @@ class Apoderado(BaseModel):
     telefono = CharField(max_length=50)
     
     class Meta:
-        table_name = 'Apoderado'
+        table_name = 'apoderado'
         
         
 class Curso(BaseModel):
@@ -33,7 +33,7 @@ class Curso(BaseModel):
     nivel = CharField(max_length=20)
     
     class Meta:
-        table_name ='Curso'
+        table_name ='curso'
         
         
 class Profesor(BaseModel):
@@ -43,7 +43,7 @@ class Profesor(BaseModel):
     telefono = CharField(max_length=18)
     
     class Meta:
-        table_name = 'Profesor'
+        table_name = 'profesor'
         
         
 class Asignatura(BaseModel):
@@ -53,7 +53,7 @@ class Asignatura(BaseModel):
     id_profesor = ForeignKeyField(Profesor, column_name='id_profesor', backref='asignaturas')
     
     class Meta:
-        table_name = 'Asignatura'
+        table_name = 'asignatura'
         
         
 class Contenido(BaseModel):
@@ -62,7 +62,7 @@ class Contenido(BaseModel):
     numero_unidad = IntegerField()
     
     class Meta:
-        table_name = 'Contenido'
+        table_name = 'contenido'
         
         
 class Evaluaciones(BaseModel):
@@ -73,7 +73,7 @@ class Evaluaciones(BaseModel):
     id_contenido = ForeignKeyField(Contenido, column_name='id_contenido', backref='evaluaciones')
     
     class Meta:
-        table_name = 'Evaluaciones'
+        table_name = 'evaluaciones'
         
         
 class Seccion(BaseModel):
@@ -97,7 +97,7 @@ class Alumno(BaseModel):
     id_apoderado = ForeignKeyField(Apoderado, column_name='id_apoderado', backref='alumnos')
     
     class Meta:
-        table_name = 'Alumno'
+        table_name = 'alumno'
         
         
 class Registro_academico(BaseModel):
@@ -107,7 +107,7 @@ class Registro_academico(BaseModel):
     id_contenido = ForeignKeyField(Contenido, column_name='id_contenido', backref='registros_academicos')
     
     class Meta:
-        table_name = 'Registro_academico'
+        table_name = 'registro_academico'
         
         
 class Clases_programadas(BaseModel):
@@ -119,7 +119,7 @@ class Clases_programadas(BaseModel):
     id_seccion = ForeignKeyField(Seccion, column_name='id_seccion', backref='clases_programadas')
     
     class Meta:
-        table_name = 'Clases_programadas'
+        table_name = 'clases_programadas'
         
         
 class Nota(BaseModel):
@@ -130,7 +130,7 @@ class Nota(BaseModel):
     id_evaluaciones = ForeignKeyField(Evaluaciones, column_name='id_evaluaciones', backref='notas')
     
     class Meta:
-        table_name = 'Nota'
+        table_name = 'nota'
         
         
 class Asistencia(BaseModel):
@@ -141,5 +141,5 @@ class Asistencia(BaseModel):
     id_clases_prog = ForeignKeyField(Clases_programadas, column_name='id_clases_prog', backref='asistencias')
     
     class Meta:
-        table_name = 'Asistencia'
+        table_name = 'asistencia'
         
