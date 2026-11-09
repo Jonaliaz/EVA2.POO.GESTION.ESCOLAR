@@ -142,4 +142,19 @@ class Asistencia(BaseModel):
     
     class Meta:
         table_name = 'asistencia'
+
+class Usuarios(BaseModel):
+    nombre = CharField(max_length=25)
+    correo = CharField()
+    fecha_incorporacion = DateField()
+    fecha_nacimiento = DateField(null=True)
+    genero = IntegerField()
+    habilitado = IntegerField(constraints=[SQL(defecto)])
+    id_usuario = AutoField()
+    nombre = CharField(max_length=25)
+    pais = IntegerField(index=True, null=True)
+    rut = CharField(max_length=11, null=True, unique=True)
+
+    class Meta:
+        table_name = 'usuarios'
         
