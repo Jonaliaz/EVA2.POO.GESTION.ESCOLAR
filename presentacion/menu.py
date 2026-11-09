@@ -51,6 +51,7 @@ from negocio.gestion_escolar import (
     lista_registros_academicos
 )
 
+from datos.repositorios.repo_apoderado import obtener_apoderado
 
 
 def _pedir_texto(mensaje: str) -> str:
@@ -86,18 +87,46 @@ def mostrar_alumnos():
         print(f'{mensaje_error}{error}')
 
 
+#confirmacion para los id de los usuarios
 def agregar_alumno():
     try:
         nombre = _pedir_texto('Ingrese nombre del alumno: ')
         correo = _pedir_texto('Ingrese correo del alumno: ')
         telefono = _pedir_texto('Ingrese teléfono del alumno: ')
+        
         mostrar_cursos()
         id_curso = _pedir_entero('Ingrese ID del curso: ')
+        
         mostrar_secciones()
         id_seccion = _pedir_entero('Ingrese ID de la sección: ')
-        mostrar_apoderados()
-        id_apoderado = _pedir_entero('Ingrese ID del apoderado: ')
+        
+        # --- NUEVO CÓDIGO DE VALIDACIÓN ---
+        id_apoderado = None
+        while True:
+            mostrar_apoderados()
+            temp_id = _pedir_entero('Ingrese ID del apoderado: ')
+            
+            # Buscamos los datos reales del apoderado
+            apoderado = obtener_apoderado(temp_id)
+            
+            if apoderado:
+                print('\n--- VERIFICACIÓN ---')
+                print(f'Vas a asociar al alumno: {nombre}')
+                print(f'Con el apoderado: {apoderado.nombre}') # Muestra el nombre real
+                
+                confirmacion = input('¿Es correcto? (s/n): ').strip().lower()
+                
+                if confirmacion == 's':
+                    id_apoderado = temp_id
+                    break # Todo está bien, salimos del ciclo
+                else:
+                    print('\nVamos a pedir el ID del apoderado otra vez...\n')
+            else:
+                print('\nError: No existe un apoderado con ese ID. Intenta de nuevo.\n')
+        # -----------------------------------
+
         crear_objeto_alumno(nombre, correo, telefono, id_seccion, id_curso, id_apoderado)
+        
     except Exception as error:
         print(f'{mensaje_error}{error}')
 
