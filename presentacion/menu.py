@@ -12,16 +12,20 @@ from auxiliares import (
     menu_cursos,
     menu_academico
 )
-from datos.repositorios.repo_escuela import (
+from datos.repositorios.repo_alumno import (
     obtener_alumno,
     eliminar_alumno,
-    asignar_curso,
-    obtener_profesor,
-    eliminar_profesor,
-    obtener_curso,
-    eliminar_curso,
-    verificar_disponibilidad_de_sala
+    asignar_curso
 )
+from datos.repositorios.repo_profesor import (
+    obtener_profesor,
+    eliminar_profesor
+)
+from datos.repositorios.repo_curso import (
+    obtener_curso,
+    eliminar_curso
+)
+from datos.repositorios.repo_clases_programadas import verificar_disponibilidad_de_sala
 from negocio.gestion_escolar import (
     lista_alumnos,
     crear_objeto_alumno,

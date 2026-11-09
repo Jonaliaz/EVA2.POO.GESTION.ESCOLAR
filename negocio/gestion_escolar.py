@@ -1,35 +1,24 @@
 from prettytable import PrettyTable
 from auxiliares.info_app import mensaje_error
-from datos.repositorios.repo_escuela import (
-    listado_alumnos,
-    guardar_alumno,
-    listado_profesores,
-    guardar_profesor,
-    listado_cursos,
-    guardar_curso,
-    listado_secciones,
-    guardar_seccion,
-    listado_apoderados,
-    guardar_apoderado,
-    listado_asignaturas,
-    guardar_asignatura,
-    listado_contenidos,
-    listado_evaluaciones,
-    listado_notas,
-    guardar_nota,
-    listado_clases_programadas,
-    listado_asistencias,
-    listado_registros_academicos
-)
-from datos.modelos.escuela import (
-    Apoderado,
-    Curso,
-    Profesor,
-    Asignatura,
-    Seccion,
-    Alumno,
-    Nota
-)
+from datos.repositorios.repo_alumno import listado_alumnos, guardar_alumno
+from datos.repositorios.repo_profesor import listado_profesores, guardar_profesor
+from datos.repositorios.repo_curso import listado_cursos, guardar_curso
+from datos.repositorios.repo_seccion import listado_secciones, guardar_seccion
+from datos.repositorios.repo_apoderado import listado_apoderados, guardar_apoderado
+from datos.repositorios.repo_asignatura import listado_asignaturas, guardar_asignatura
+from datos.repositorios.repo_contenido import listado_contenidos
+from datos.repositorios.repo_evaluaciones import listado_evaluaciones
+from datos.repositorios.repo_nota import listado_notas, guardar_nota
+from datos.repositorios.repo_clases_programadas import listado_clases_programadas
+from datos.repositorios.repo_asistencia import listado_asistencias
+from datos.repositorios.repo_registro_academico import listado_registros_academicos
+from datos.modelos.apoderado import Apoderado
+from datos.modelos.curso import Curso
+from datos.modelos.profesor import Profesor
+from datos.modelos.asignatura import Asignatura
+from datos.modelos.seccion import Seccion
+from datos.modelos.alumno import Alumno
+from datos.modelos.nota import Nota
 
 
 
