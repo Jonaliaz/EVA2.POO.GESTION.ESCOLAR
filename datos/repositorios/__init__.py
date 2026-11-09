@@ -87,6 +87,8 @@ from datos.repositorios.repo_registro_academico import (
 )
 from datos.repositorios.repo_usuario import (
     listado_usuarios,
+    listado_usuarios_habil,
+    listado_usuarios_deshabilitados,
     obtener_usuario,
     guardar_usuario,
     actualizar_usuario,

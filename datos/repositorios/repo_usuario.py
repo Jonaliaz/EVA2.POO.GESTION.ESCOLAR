@@ -1,9 +1,25 @@
 from datos.modelos.usuario import Usuarios
 
 
-def listado_usuarios():
+def listado_usuarios_habilitados():
     try:
-        return Usuarios.select().where(Usuarios.habilitado == 1)
+        return Usuarios.select()
+    except Exception as e:
+        print(f"Ha ocurrido un error al listar usuarios: {e}")
+        return []
+
+
+def listado_usuarios_deshabilitados():
+    try:
+        return Usuarios.select().where(Usuarios.habilitado == 0)
+    except Exception as e:
+        print(f"Ha ocurrido un error al listar usuarios: {e}")
+        return []
+
+
+def listado_usuarios_deshabilitados():
+    try:
+        return Usuarios.select().where(Usuarios.habilitado == 0)
     except Exception as e:
         print(f"Ha ocurrido un error al listar usuarios: {e}")
         return []

@@ -10,5 +10,6 @@ from auxiliares.opciones_menu import (
     menu_alumnos,
     menu_profesores,
     menu_cursos,
-    menu_academico
+    menu_academico,
+    menu_usuarios
 )

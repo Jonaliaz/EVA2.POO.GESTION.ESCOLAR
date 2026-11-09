@@ -10,47 +10,64 @@ from auxiliares import (
     menu_alumnos,
     menu_profesores,
     menu_cursos,
-    menu_academico
+    menu_academico,
+    menu_usuarios
 )
-from datos.repositorios.repo_alumno import (
-    obtener_alumno,
-    eliminar_alumno,
-    asignar_curso
-)
-from datos.repositorios.repo_profesor import (
-    obtener_profesor,
-    eliminar_profesor
-)
-from datos.repositorios.repo_curso import (
-    obtener_curso,
-    eliminar_curso
-)
-from datos.repositorios.repo_clases_programadas import verificar_disponibilidad_de_sala
-from negocio.gestion_escolar import (
+from negocio.negocio_alumno import (
     lista_alumnos,
+    obtener_objeto_alumno,
     crear_objeto_alumno,
     actualizar_objeto_alumno,
+    eliminar_objeto_alumno,
+    asignar_curso_alumno
+)
+from negocio.negocio_profesor import (
     lista_profesores,
+    obtener_objeto_profesor,
     crear_objeto_profesor,
     actualizar_objeto_profesor,
+    eliminar_objeto_profesor
+)
+from negocio.negocio_curso import (
     lista_cursos,
+    obtener_objeto_curso,
     crear_objeto_curso,
     actualizar_objeto_curso,
-    lista_secciones,
-    crear_objeto_seccion,
-    lista_apoderados,
-    crear_objeto_apoderado,
-    lista_asignaturas,
-    crear_objeto_asignatura,
-    lista_contenidos,
-    lista_evaluaciones,
-    lista_notas,
-    crear_objeto_nota,
-    lista_clases_programadas,
-    lista_asistencias,
-    lista_registros_academicos
+    eliminar_objeto_curso
 )
-
+from negocio.negocio_seccion import (
+    lista_secciones,
+    crear_objeto_seccion
+)
+from negocio.negocio_apoderado import (
+    lista_apoderados,
+    crear_objeto_apoderado
+)
+from negocio.negocio_asignatura import (
+    lista_asignaturas,
+    crear_objeto_asignatura
+)
+from negocio.negocio_contenido import lista_contenidos
+from negocio.negocio_evaluaciones import lista_evaluaciones
+from negocio.negocio_nota import (
+    lista_notas,
+    crear_objeto_nota
+)
+from negocio.negocio_clases_programadas import (
+    lista_clases_programadas,
+    disponibilidad_sala
+)
+from negocio.negocio_asistencia import lista_asistencias
+from negocio.negocio_registro_academico import lista_registros_academicos
+from negocio.negocio_usuarios import (
+    lista_usuarios,
+    lista_usuarios_habilitados,
+    lista_usuarios_inactivos,
+    obtener_objeto_usuario,
+    crear_objeto_usuario,
+    actualizar_objeto_usuario,
+    eliminar_objeto_usuario
+)
 
 
 def _pedir_texto(mensaje: str) -> str:
@@ -76,7 +93,6 @@ def _pedir_float(mensaje: str) -> float:
             return float(input(mensaje).strip())
         except ValueError:
             print("Entrada inválida: debe ingresar un número decimal (ej. 6.5).")
-
 
 
 def mostrar_alumnos():
@@ -106,7 +122,7 @@ def modificar_alumno():
     try:
         mostrar_alumnos()
         id_alumno = _pedir_entero('Ingrese el ID del alumno a modificar: ')
-        encontrado = obtener_alumno(id_alumno)
+        encontrado = obtener_objeto_alumno(id_alumno)
         if encontrado:
             print(f'\nAlumno encontrado: {encontrado.nombre}')
             nombre = input('Nuevo nombre (o ENTER para conservar): ').strip()
@@ -126,9 +142,9 @@ def borrar_alumno():
     try:
         mostrar_alumnos()
         id_alumno = _pedir_entero('Ingrese el ID del alumno a eliminar: ')
-        encontrado = obtener_alumno(id_alumno)
+        encontrado = obtener_objeto_alumno(id_alumno)
         if encontrado:
-            eliminar_alumno(encontrado) # <--- Llamamos al repositorio
+            eliminar_objeto_alumno(encontrado)
             print('\n¡Alumno eliminado correctamente!')
         else:
             print('Alumno no encontrado.')
@@ -140,17 +156,16 @@ def cambiar_curso_alumno():
     try:
         mostrar_alumnos()
         id_alumno = _pedir_entero('Ingrese el ID del alumno: ')
-        alumno = obtener_alumno(id_alumno)
+        alumno = obtener_objeto_alumno(id_alumno)
         mostrar_cursos()
         id_curso = _pedir_entero('Ingrese el ID del nuevo curso a asignar: ')
-        curso = obtener_curso(id_curso)
+        curso = obtener_objeto_curso(id_curso)
         if alumno and curso:
-            asignar_curso(alumno, curso)
+            asignar_curso_alumno(alumno, curso)
         else:
             print('Alumno o Curso no encontrado.')
     except Exception as error:
         print(f'{mensaje_error}{error}')
-
 
 
 def mostrar_profesores():
@@ -174,7 +189,7 @@ def modificar_profesor():
     try:
         mostrar_profesores()
         id_profesor = _pedir_entero('Ingrese el ID del profesor a modificar: ')
-        encontrado = obtener_profesor(id_profesor)
+        encontrado = obtener_objeto_profesor(id_profesor)
         if encontrado:
             print(f'\nProfesor encontrado: {encontrado.nombre}')
             nombre = input('Nuevo nombre (o ENTER para conservar): ').strip()
@@ -191,14 +206,13 @@ def borrar_profesor():
     try:
         mostrar_profesores()
         id_profesor = _pedir_entero('Ingrese el ID del profesor a eliminar: ')
-        encontrado = obtener_profesor(id_profesor)
+        encontrado = obtener_objeto_profesor(id_profesor)
         if encontrado:
-            eliminar_profesor(encontrado)
+            eliminar_objeto_profesor(encontrado)
         else:
             print('Profesor no encontrado.')
     except Exception as error:
         print(f'{mensaje_error}{error}')
-
 
 
 def mostrar_cursos():
@@ -221,7 +235,7 @@ def modificar_curso():
     try:
         mostrar_cursos()
         id_curso = _pedir_entero('Ingrese el ID del curso a modificar: ')
-        encontrado = obtener_curso(id_curso)
+        encontrado = obtener_objeto_curso(id_curso)
         if encontrado:
             nombre = input('Nuevo nombre (o ENTER para conservar): ').strip()
             nivel = input('Nuevo nivel (o ENTER para conservar): ').strip()
@@ -236,9 +250,9 @@ def borrar_curso():
     try:
         mostrar_cursos()
         id_curso = _pedir_entero('Ingrese el ID del curso a eliminar: ')
-        encontrado = obtener_curso(id_curso)
+        encontrado = obtener_objeto_curso(id_curso)
         if encontrado:
-            eliminar_curso(encontrado)
+            eliminar_objeto_curso(encontrado)
         else:
             print('Curso no encontrado.')
     except Exception as error:
@@ -257,7 +271,6 @@ def agregar_seccion():
     mostrar_asignaturas()
     id_asignatura = _pedir_entero('Ingrese ID de la asignatura: ')
     crear_objeto_seccion(numero, cupos, id_curso, id_asignatura)
-
 
 
 def mostrar_apoderados():
@@ -309,7 +322,7 @@ def mostrar_clases_y_sala():
     print(lista_clases_programadas(PrettyTable()))
     sala = input('Si desea verificar disponibilidad de una sala, escriba su nombre (o ENTER para omitir): ').strip()
     if sala != '':
-        disponible = verificar_disponibilidad_de_sala(sala)
+        disponible = disponibilidad_sala(sala)
         print(f"¿La sala '{sala}' está disponible?: {'Sí' if disponible else 'No (Ya tiene clases programadas)'}\n")
 
 
@@ -319,6 +332,69 @@ def mostrar_asistencias_y_registros():
     print("\n--- LISTADO DE REGISTROS ACADÉMICOS ---")
     print(lista_registros_academicos(PrettyTable()))
 
+
+def mostrar_usuarios():
+    try:
+        print(lista_usuarios(PrettyTable()))
+    except Exception as error:
+        print(f'{mensaje_error}{error}')
+
+
+def mostrar_usuarios_habilitados():
+    try:
+        print(lista_usuarios_habilitados(PrettyTable()))
+    except Exception as error:
+        print(f'{mensaje_error}{error}')
+
+
+def mostrar_usuarios_deshabilitados():
+    try:
+        print(lista_usuarios_inactivos(PrettyTable()))
+    except Exception as error:
+        print(f'{mensaje_error}{error}')
+
+
+def agregar_usuario():
+    try:
+        nombre = _pedir_texto('Ingrese nombre del usuario: ')
+        apellido = _pedir_texto('Ingrese apellido del usuario: ')
+        correo = _pedir_texto('Ingrese correo del usuario: ')
+        rut = _pedir_texto('Ingrese RUT del usuario: ')
+        crear_objeto_usuario(nombre, apellido, correo, rut)
+    except Exception as error:
+        print(f'{mensaje_error}{error}')
+
+
+def modificar_usuario():
+    try:
+        mostrar_usuarios()
+        id_usuario = _pedir_entero('Ingrese el ID del usuario a modificar: ')
+        encontrado = obtener_objeto_usuario(id_usuario)
+        if encontrado:
+            print(f'\nUsuario encontrado: {encontrado.nombre} {encontrado.apellido or ""}'.strip())
+            nombre = input('Nuevo nombre (o ENTER para conservar): ').strip()
+            apellido = input('Nuevo apellido (o ENTER para conservar): ').strip()
+            correo = input('Nuevo correo (o ENTER para conservar): ').strip()
+            rut = input('Nuevo RUT (o ENTER para conservar): ').strip()
+            habilitado = input('Estado habilitado (1 = Sí, 0 = No, o ENTER para conservar): ').strip()
+            actualizar_objeto_usuario(nombre, apellido, correo, rut, habilitado, encontrado)
+        else:
+            print('Usuario no encontrado.')
+    except Exception as error:
+        print(f'{mensaje_error}{error}')
+
+
+def borrar_usuario():
+    try:
+        mostrar_usuarios()
+        id_usuario = _pedir_entero('Ingrese el ID del usuario a eliminar: ')
+        encontrado = obtener_objeto_usuario(id_usuario)
+        if encontrado:
+            eliminar_objeto_usuario(encontrado)
+        else:
+            print('Usuario no encontrado.')
+    except Exception as error:
+        print(f'{mensaje_error}{error}')
 
 
 def _ejecutar_menu(
@@ -388,6 +464,17 @@ def _menu_academico() -> None:
     })
 
 
+def _menu_usuarios() -> None:
+    _ejecutar_menu(menu_usuarios, {
+        '1': mostrar_usuarios,
+        '2': mostrar_usuarios_habilitados,
+        '3': mostrar_usuarios_deshabilitados,
+        '4': agregar_usuario,
+        '5': modificar_usuario,
+        '6': borrar_usuario
+    })
+
+
 def menu_principal() -> None:
     print(f'{nombre_app} v{version_app}')
     print('=' * (len(nombre_app) + len(version_app) + 2))
@@ -399,6 +486,7 @@ def menu_principal() -> None:
             '2': _menu_profesores,
             '3': _menu_cursos,
             '4': _menu_academico,
+            '5': _menu_usuarios,
         },
         'Saliendo...\n',
     )

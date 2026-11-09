@@ -3,6 +3,7 @@ menu_superior = {
     '2': 'Gestión de Profesores',
     '3': 'Gestión de Cursos y Secciones',
     '4': 'Gestión Académica (Apoderados, Asignaturas, Contenidos, Evaluaciones, Notas, Asistencia, Clases, Registro)',
+    '5': 'Gestión de Usuarios',
     '0': 'Salir'
 }
 
@@ -44,5 +45,15 @@ menu_academico = {
     '8': 'Agregar Nota',
     '9': 'Listado de Clases Programadas y Verificar Sala',
     '10': 'Listado de Asistencia y Registro Académico',
+    '0': 'Volver'
+}
+
+menu_usuarios = {
+    '1': 'Listado de Usuarios',
+    '2': 'Listado de Usuarios Habilitados',
+    '3': 'Listado de Usuarios Deshabilitados',
+    '4': 'Agregar Usuario',
+    '5': 'Modificar Usuario',
+    '6': 'Eliminar Usuario',
     '0': 'Volver'
 }

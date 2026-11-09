@@ -15,3 +15,12 @@ password=SU_CONTRASEÑA_AQUI
 
 Cuarto: Importar el archivo poo_eva2.sql en phpMyAdmin.
 Cinco: Ejecutar el sistema con: python app.py.
+
+----------------------------------------------------------------------
+
+REQUERIMIENTOS: 
+
+peewee==3.17.0
+python-decouple==3.8
+PyMySQL==1.1.0
+prettytable==3.9.0
