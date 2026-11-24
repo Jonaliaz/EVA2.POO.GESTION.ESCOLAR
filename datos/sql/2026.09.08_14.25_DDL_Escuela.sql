@@ -153,7 +153,8 @@ Create table Usuario (
     id_usuario int primary key auto_increment not null,
     nombre varchar(30) not null,
     apellido varchar(30) not null,
-    Correo varchar(100) not null,
+    correo varchar(100) not null,
+    contrasena varchar(255) not null,
     rut varchar(12) not null,
     habilitado tinyint not null default 1
 );

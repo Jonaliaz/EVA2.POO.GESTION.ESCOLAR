@@ -84,6 +84,11 @@ from negocio.negocio_usuarios import (
     lista_usuarios_habilitados,
     lista_usuarios_inactivos,
     obtener_objeto_usuario,
+    obtener_usuario_por_correo,
+    obtener_usuario_por_rut,
+    obtener_usuario_login,
+    encriptar_contrasena,
+    verificar_contrasena,
     crear_objeto_usuario,
     actualizar_objeto_usuario,
     eliminar_objeto_usuario

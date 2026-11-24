@@ -5,9 +5,12 @@ from peewee import (
     IntegerField,
     FloatField,
     DateField,
-    ForeignKeyField
+    ForeignKeyField,
+    SQL
 )
 from datos.conexion_db import conexion_db
+
+defecto = 'DEFAULT 1'
 
 database = conexion_db()
 
@@ -144,12 +147,14 @@ class Asistencia(BaseModel):
         table_name = 'asistencia'
 
 class Usuarios(BaseModel):
-    nombre = CharField(max_length=25)
-    correo = CharField()
-    habilitado = IntegerField(constraints=[SQL(defecto)])
     id_usuario = AutoField()
-    rut = CharField(max_length=11, null=True, unique=True)
+    nombre = CharField(max_length=30)
+    apellido = CharField(max_length=30, null=True)
+    correo = CharField(max_length=100)
+    contrasena = CharField(max_length=255)
+    habilitado = IntegerField(default=1, constraints=[SQL(defecto)])
+    rut = CharField(max_length=12, null=True, unique=True)
 
     class Meta:
-        table_name = 'usuarios'
+        table_name = 'usuario'
         

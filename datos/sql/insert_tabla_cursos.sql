@@ -158,9 +158,9 @@ VALUES
 ('2026-09-23', 'Presente', 9, 3),
 ('2026-09-23', 'Ausente', 10, 3);
 
--- Insertar datos dentro de la tabla Usuario
-INSERT INTO usuario (nombre, apellido, Correo, rut, habilitado)
+-- Insertar datos dentro de la tabla Usuario (Contraseñas: Juan1234!, Maria1234!, Pedro1234!)
+INSERT INTO usuario (nombre, apellido, correo, contrasena, rut, habilitado)
 VALUES
-('Juan', 'Pérez', 'juan.perez@gmail.com', '12345678-9', 1),
-('María', 'González', 'maria.gonzalez@gmail.com', '98765432-1', 1),
-('Pedro', 'Ramírez', 'pedro.ramirez@gmail.com', '11222333-4', 0);
+('Juan', 'Pérez', 'juan.perez@gmail.com', '$2b$12$6gWWgLIDZZP/df7kdwWb7ugXke0.GtGWhB3ME/tCILXP6mImdKgPi', '12345678-9', 1),
+('María', 'González', 'maria.gonzalez@gmail.com', '$2b$12$pXZpXTtgOcDGfgB8IluG8efJ9DOHJ9PxzXgFnDgEQnQ8Efn3WdJLa', '98765432-1', 1),
+('Pedro', 'Ramírez', 'pedro.ramirez@gmail.com', '$2b$12$GUT/Q/R5PNy5p6ijCo77uOnVfHIwHNoxPle9.dOhyM67uSX20Xlu.', '11222333-4', 0);

@@ -289,6 +289,32 @@ INSERT INTO `seccion` (`id_seccion`, `numero`, `cupos`, `id_curso`, `id_asignatu
 
 
 
+--Estructura de tabla para la tabla `usuario`
+
+
+CREATE TABLE `usuario` (
+  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(30) NOT NULL,
+  `apellido` varchar(30) DEFAULT NULL,
+  `correo` varchar(100) NOT NULL,
+  `contrasena` varchar(255) NOT NULL,
+  `rut` varchar(12) DEFAULT NULL,
+  `habilitado` tinyint(4) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id_usuario`),
+  UNIQUE KEY `rut` (`rut`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+
+--Volcado de datos para la tabla `usuario` (Contraseñas: Juan1234!, Maria1234!, Pedro1234!)
+
+
+INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido`, `correo`, `contrasena`, `rut`, `habilitado`) VALUES
+(1, 'Juan', 'Pérez', 'juan.perez@gmail.com', '$2b$12$6gWWgLIDZZP/df7kdwWb7ugXke0.GtGWhB3ME/tCILXP6mImdKgPi', '12345678-9', 1),
+(2, 'María', 'González', 'maria.gonzalez@gmail.com', '$2b$12$pXZpXTtgOcDGfgB8IluG8efJ9DOHJ9PxzXgFnDgEQnQ8Efn3WdJLa', '98765432-1', 1),
+(3, 'Pedro', 'Ramírez', 'pedro.ramirez@gmail.com', '$2b$12$GUT/Q/R5PNy5p6ijCo77uOnVfHIwHNoxPle9.dOhyM67uSX20Xlu.', '11222333-4', 0);
+
+
+
 
 --Indices de la tabla `alumno`
 

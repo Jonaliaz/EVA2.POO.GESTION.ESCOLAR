@@ -90,6 +90,12 @@ from datos.repositorios.repo_usuario import (
     listado_usuarios_habil,
     listado_usuarios_deshabilitados,
     obtener_usuario,
+    obtener_usuario_correo,
+    obtener_usuario_rut,
+    obtener_usuario_correo_o_rut,
+    buscar_usuario_por_correo,
+    buscar_usuario_por_rut,
+    buscar_usuario_login,
     guardar_usuario,
     actualizar_usuario,
     eliminar_usuario

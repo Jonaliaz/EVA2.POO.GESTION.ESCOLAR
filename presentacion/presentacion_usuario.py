@@ -1,10 +1,12 @@
+import maskpass
 from prettytable import PrettyTable
 from auxiliares import (
     mensaje_error,
     validar_rut,
     validar_largo_string,
     validar_correo,
-    validar_numero
+    validar_numero,
+    validar_contrasena
 )
 from negocio.negocio_usuarios import (
     lista_usuarios,
@@ -106,6 +108,23 @@ def _pedir_habilitado_opcional(mensaje: str) -> str:
             return str(numero)
 
 
+def _pedir_contrasena(mensaje: str, opcional: bool = False) -> str:
+    while True:
+        entrada = maskpass.askpass(prompt=mensaje, mask="*").strip()
+        if entrada == '':
+            if opcional:
+                return ''
+            print("El campo no puede estar vacío.")
+            continue
+        contrasena, errores = validar_contrasena(entrada)
+        if errores:
+            for err in errores:
+                print(err)
+        else:
+            print("Contraseña válida.")
+            return contrasena
+
+
 def mostrar_usuarios():
     try:
         print(lista_usuarios(PrettyTable()))
@@ -129,11 +148,12 @@ def mostrar_usuarios_deshabilitados():
 
 def agregar_usuario():
     try:
-        nombre = _pedir_texto('Ingrese nombre del usuario: ', 25)
-        apellido = _pedir_texto('Ingrese apellido del usuario: ', 25)
+        nombre = _pedir_texto('Ingrese nombre del usuario: ', 30)
+        apellido = _pedir_texto('Ingrese apellido del usuario: ', 30)
         correo = _pedir_correo('Ingrese correo del usuario: ', 100)
         rut = _pedir_rut('Ingrese RUT del usuario: ', 12)
-        crear_objeto_usuario(nombre, apellido, correo, rut)
+        contrasena = _pedir_contrasena('Ingrese contraseña del usuario: ')
+        crear_objeto_usuario(nombre, apellido, correo, rut, contrasena)
     except Exception as error:
         print(f'{mensaje_error}{error}')
 
@@ -145,12 +165,13 @@ def modificar_usuario():
         encontrado = obtener_objeto_usuario(id_usuario)
         if encontrado:
             print(f'\nUsuario encontrado: {encontrado.nombre} {encontrado.apellido or ""}'.strip())
-            nombre = _pedir_texto_opcional('Nuevo nombre (o ENTER para conservar): ', 25)
-            apellido = _pedir_texto_opcional('Nuevo apellido (o ENTER para conservar): ', 25)
+            nombre = _pedir_texto_opcional('Nuevo nombre (o ENTER para conservar): ', 30)
+            apellido = _pedir_texto_opcional('Nuevo apellido (o ENTER para conservar): ', 30)
             correo = _pedir_correo('Nuevo correo (o ENTER para conservar): ', 100, opcional=True)
             rut = _pedir_rut('Nuevo RUT (o ENTER para conservar): ', 12, opcional=True)
+            contrasena = _pedir_contrasena('Nueva contraseña (o ENTER para conservar): ', opcional=True)
             habilitado = _pedir_habilitado_opcional('Estado habilitado (1 = Sí, 0 = No, o ENTER para conservar): ')
-            actualizar_objeto_usuario(nombre, apellido, correo, rut, habilitado, encontrado)
+            actualizar_objeto_usuario(nombre, apellido, correo, rut, habilitado, encontrado, contrasena)
         else:
             print('Usuario no encontrado.')
     except Exception as error:
