@@ -1,4 +1,4 @@
---Insertar datos dentro de la tabla Apoderados
+-- Insertar datos dentro de la tabla Apoderados
 INSERT INTO apoderado
 (nombre, correo, telefono)
 VALUES
@@ -16,7 +16,7 @@ VALUES
 
 
 
---Insertar datos dentro de la Curso
+-- Insertar datos dentro de la Curso
 INSERT INTO curso
 (nombre, nivel)
 VALUES
@@ -27,7 +27,7 @@ VALUES
 
 
 
---Insertar datos dentro de la tabla Profesor
+-- Insertar datos dentro de la tabla Profesor
 INSERT INTO profesor
 (nombre, correo, telefono)
 VALUES
@@ -38,7 +38,7 @@ VALUES
 
 
 
---Insertar datos dentro de la tabla Asignatura
+-- Insertar datos dentro de la tabla Asignatura
 INSERT INTO asignatura
 (nombre, descripcion, id_profesor)
 VALUES
@@ -49,7 +49,7 @@ VALUES
 
 
 
---Insertar datos dentro de la tabla Contenido
+-- Insertar datos dentro de la tabla Contenido
 INSERT INTO contenido
 (nombre, numero_unidad)
 VALUES
@@ -61,7 +61,7 @@ VALUES
 
 
 
---Insertar datos dentro de la tabla Evaluaciones
+-- Insertar datos dentro de la tabla Evaluaciones
 INSERT INTO evaluaciones
 (nombre, fecha, descripcion, id_contenido)
 VALUES
@@ -73,7 +73,7 @@ VALUES
 
 
 
---Insertar datos dentro de la tabla Seccion
+-- Insertar datos dentro de la tabla Seccion
 INSERT INTO seccion
 (numero, cupos, id_curso, id_asignatura)
 VALUES
@@ -84,7 +84,7 @@ VALUES
 
 
 
---Insertar datos dentro de la tabla Alumno
+-- Insertar datos dentro de la tabla Alumno
 INSERT INTO alumno
 (nombre, correo, telefono, id_seccion, id_curso, id_apoderado)
 VALUES
@@ -102,7 +102,7 @@ VALUES
 
 
 
---Insertar datos dentro de la tabla Registro Academico
+-- Insertar datos dentro de la tabla Registro Academico
 INSERT INTO registro_academico
 (fecha, id_curso, id_contenido)
 VALUES
@@ -114,7 +114,7 @@ VALUES
 
 
 
---Insertar datos dentro de la tabla Clases Programadas
+-- Insertar datos dentro de la tabla Clases Programadas
 INSERT INTO clases_programadas
 (horario, fecha, sala, id_asignatura, id_seccion)
 VALUES
@@ -125,7 +125,7 @@ VALUES
 
 
 
---Insertar datos dentro de la tabla Nota
+-- nsertar datos dentro de la tabla Nota
 INSERT INTO nota
 (calificacion, fecha, id_alumno, id_evaluaciones)
 VALUES
@@ -143,7 +143,7 @@ VALUES
 
 
 
---Insertar datos dentro de la tabla Asistencia
+-- Insertar datos dentro de la tabla Asistencia
 INSERT INTO asistencia
 (fecha, estado, id_alumno, id_clases_prog)
 VALUES
@@ -158,7 +158,8 @@ VALUES
 ('2026-09-23', 'Presente', 9, 3),
 ('2026-09-23', 'Ausente', 10, 3);
 
-INSERT INTO usuarios (nombre, apellido, Correo, rut, habilitado)
+-- Insertar datos dentro de la tabla Usuario
+INSERT INTO usuario (nombre, apellido, Correo, rut, habilitado)
 VALUES
 ('Juan', 'Pérez', 'juan.perez@gmail.com', '12345678-9', 1),
 ('María', 'González', 'maria.gonzalez@gmail.com', '98765432-1', 1),
