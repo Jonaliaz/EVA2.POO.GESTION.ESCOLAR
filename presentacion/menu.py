@@ -36,7 +36,8 @@ from presentacion.presentacion_seccion import (
 )
 from presentacion.presentacion_apoderado import (
     mostrar_apoderados,
-    agregar_apoderado
+    agregar_apoderado,
+    modificar_apoderado
 )
 from presentacion.presentacion_asignatura import (
     mostrar_asignaturas,
@@ -116,14 +117,15 @@ def _menu_academico() -> None:
     _ejecutar_menu(menu_academico, {
         '1': mostrar_apoderados,
         '2': agregar_apoderado,
-        '3': mostrar_asignaturas,
-        '4': agregar_asignatura,
-        '5': mostrar_contenidos,
-        '6': mostrar_evaluaciones,
-        '7': mostrar_notas,
-        '8': agregar_nota,
-        '9': mostrar_clases_y_sala,
-        '10': mostrar_asistencias_y_registros
+        '3': modificar_apoderado,
+        '4': mostrar_asignaturas,
+        '5': agregar_asignatura,
+        '6': mostrar_contenidos,
+        '7': mostrar_evaluaciones,
+        '8': mostrar_notas,
+        '9': agregar_nota,
+        '10': mostrar_clases_y_sala,
+        '11': mostrar_asistencias_y_registros
     })
 
 

@@ -1,5 +1,10 @@
 from prettytable import PrettyTable
-from auxiliares import mensaje_error
+from auxiliares import (
+    mensaje_error,
+    validar_largo_string,
+    validar_correo,
+    validar_numero
+)
 from negocio.negocio_alumno import (
     lista_alumnos,
     obtener_objeto_alumno,
@@ -15,21 +20,93 @@ from presentacion.presentacion_seccion import mostrar_secciones
 from presentacion.presentacion_apoderado import mostrar_apoderados
 
 
-def _pedir_texto(mensaje: str) -> str:
+def _pedir_texto(mensaje: str, largo: int = 0) -> str:
     valor = ''
     while valor == '':
         valor = input(mensaje).strip()
         if valor == '':
             print("El campo no puede estar vacío.")
+        elif largo > 0:
+            valor, msg = validar_largo_string(valor, largo)
+            if valor == '':
+                print(msg)
     return valor
+
+
+def _pedir_texto_opcional(mensaje: str, largo: int = 0) -> str:
+    while True:
+        valor = input(mensaje).strip()
+        if valor == '':
+            return ''
+        if largo > 0:
+            val_validado, msg = validar_largo_string(valor, largo)
+            if val_validado == '':
+                print(msg)
+                continue
+        return valor
+
+
+def _pedir_correo(mensaje: str, largo: int = 50, opcional: bool = False) -> str:
+    while True:
+        entrada = input(mensaje).strip()
+        if entrada == '':
+            if opcional:
+                return ''
+            print("El campo no puede estar vacío.")
+            continue
+        if largo > 0:
+            val_largo, msg_largo = validar_largo_string(entrada, largo)
+            if val_largo == '':
+                print(msg_largo)
+                continue
+        correo, msg = validar_correo(entrada)
+        print(msg)
+        if correo != '':
+            return correo
+
+
+def _pedir_telefono(mensaje: str, largo: int = 50, opcional: bool = False) -> str:
+    while True:
+        entrada = input(mensaje).strip()
+        if entrada == '':
+            if opcional:
+                return ''
+            print("El campo no puede estar vacío.")
+            continue
+        if largo > 0:
+            val_largo, msg_largo = validar_largo_string(entrada, largo)
+            if val_largo == '':
+                print(msg_largo)
+                continue
+        numero, msg = validar_numero(entrada)
+        print(msg)
+        if numero != 0 or entrada == '0':
+            return str(numero)
 
 
 def _pedir_entero(mensaje: str) -> int:
     while True:
-        try:
-            return int(input(mensaje).strip())
-        except ValueError:
-            print("Entrada inválida: debe ingresar un número entero.")
+        entrada = input(mensaje).strip()
+        if entrada == '':
+            print("El campo no puede estar vacío.")
+            continue
+        numero, msg = validar_numero(entrada)
+        if numero == 0 and entrada != '0':
+            print(msg)
+        else:
+            return numero
+
+
+def _pedir_entero_opcional(mensaje: str) -> str:
+    while True:
+        entrada = input(mensaje).strip()
+        if entrada == '':
+            return ''
+        numero, msg = validar_numero(entrada)
+        if numero == 0 and entrada != '0':
+            print(msg)
+        else:
+            return str(numero)
 
 
 def mostrar_alumnos():
@@ -42,9 +119,9 @@ def mostrar_alumnos():
 #confirmacion para los id de los usuarios
 def agregar_alumno():
     try:
-        nombre = _pedir_texto('Ingrese nombre del alumno: ')
-        correo = _pedir_texto('Ingrese correo del alumno: ')
-        telefono = _pedir_texto('Ingrese teléfono del alumno: ')
+        nombre = _pedir_texto('Ingrese nombre del alumno: ', 60)
+        correo = _pedir_correo('Ingrese correo del alumno: ', 50)
+        telefono = _pedir_telefono('Ingrese teléfono del alumno: ', 50)
         
         mostrar_cursos()
         id_curso = _pedir_entero('Ingrese ID del curso: ')
@@ -90,12 +167,12 @@ def modificar_alumno():
         encontrado = obtener_objeto_alumno(id_alumno)
         if encontrado:
             print(f'\nAlumno encontrado: {encontrado.nombre}')
-            nombre = input('Nuevo nombre (o ENTER para conservar): ').strip()
-            correo = input('Nuevo correo (o ENTER para conservar): ').strip()
-            telefono = input('Nuevo teléfono (o ENTER para conservar): ').strip()
-            id_seccion = input('Nuevo ID sección (o ENTER para conservar): ').strip()
-            id_curso = input('Nuevo ID curso (o ENTER para conservar): ').strip()
-            id_apoderado = input('Nuevo ID apoderado (o ENTER para conservar): ').strip()
+            nombre = _pedir_texto_opcional('Nuevo nombre (o ENTER para conservar): ', 60)
+            correo = _pedir_correo('Nuevo correo (o ENTER para conservar): ', 50, opcional=True)
+            telefono = _pedir_telefono('Nuevo teléfono (o ENTER para conservar): ', 50, opcional=True)
+            id_seccion = _pedir_entero_opcional('Nuevo ID sección (o ENTER para conservar): ')
+            id_curso = _pedir_entero_opcional('Nuevo ID curso (o ENTER para conservar): ')
+            id_apoderado = _pedir_entero_opcional('Nuevo ID apoderado (o ENTER para conservar): ')
             actualizar_objeto_alumno(nombre, correo, telefono, id_seccion, id_curso, id_apoderado, encontrado)
         else:
             print('Alumno no encontrado.')

@@ -24,7 +24,8 @@ from presentacion.presentacion_seccion import (
 )
 from presentacion.presentacion_apoderado import (
     mostrar_apoderados,
-    agregar_apoderado
+    agregar_apoderado,
+    modificar_apoderado
 )
 from presentacion.presentacion_asignatura import (
     mostrar_asignaturas,

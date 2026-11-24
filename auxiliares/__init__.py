@@ -13,3 +13,12 @@ from auxiliares.opciones_menu import (
     menu_academico,
     menu_usuarios
 )
+from auxiliares.validaciones import (
+    validar_rut,
+    validar_largo_string,
+    validar_correo,
+    validar_numero,
+    validar_fecha,
+    validar_genero,
+    validar_contrasena
+)

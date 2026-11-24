@@ -37,14 +37,15 @@ menu_cursos = {
 menu_academico = {
     '1': 'Listado de Apoderados',
     '2': 'Agregar Apoderado',
-    '3': 'Listado de Asignaturas',
-    '4': 'Agregar Asignatura',
-    '5': 'Listado de Contenidos',
-    '6': 'Listado de Evaluaciones',
-    '7': 'Listado de Notas',
-    '8': 'Agregar Nota',
-    '9': 'Listado de Clases Programadas y Verificar Sala',
-    '10': 'Listado de Asistencia y Registro Académico',
+    '3': 'Modificar Apoderado',
+    '4': 'Listado de Asignaturas',
+    '5': 'Agregar Asignatura',
+    '6': 'Listado de Contenidos',
+    '7': 'Listado de Evaluaciones',
+    '8': 'Listado de Notas',
+    '9': 'Agregar Nota',
+    '10': 'Listado de Clases Programadas y Verificar Sala',
+    '11': 'Listado de Asistencia y Registro Académico',
     '0': 'Volver'
 }
 

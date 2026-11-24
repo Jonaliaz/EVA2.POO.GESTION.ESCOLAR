@@ -157,3 +157,9 @@ VALUES
 ('2026-09-23', 'Presente', 8, 3),
 ('2026-09-23', 'Presente', 9, 3),
 ('2026-09-23', 'Ausente', 10, 3);
+
+INSERT INTO usuarios (nombre, apellido, Correo, rut, habilitado)
+VALUES
+('Juan', 'Pérez', 'juan.perez@gmail.com', '12345678-9', 1),
+('María', 'González', 'maria.gonzalez@gmail.com', '98765432-1', 1),
+('Pedro', 'Ramírez', 'pedro.ramirez@gmail.com', '11222333-4', 0);
