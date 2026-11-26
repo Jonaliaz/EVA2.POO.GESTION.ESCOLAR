@@ -12,7 +12,7 @@ Equipo de desarrollo del proyecto:
 
 * **Jonathan Aliaz**
 * **Leonardo Barriga**
-* **Martín**
+* **Martín Baiman**
 
 ---
 
